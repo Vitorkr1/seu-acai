@@ -391,7 +391,7 @@
             <h3>Copão Trufado 770ml</h3>
             <div class="prod-price">R$ 23,00</div>
             <p class="prod-desc">Camadas de açaí cremoso, calda e biscoito triturado. Já inclui 1 fruta + 3 complementos + o creme que você escolher — Morango, Ninho ou Avelã.</p>
-            <a class="btn btn-gold" href="#montar">Montar meu Trufado</a>
+            <a class="btn btn-gold" href="#montar" data-select-mode="trufado">Montar meu Trufado</a>
           </div>
         </div>
 
@@ -401,10 +401,10 @@
             <img src="images/787768851_1066060802833539_2677554711284602414_n_.jpg" alt="Açaí 600ml com frutas e complementos por cima">
           </div>
           <div class="prod-body">
-            <h3>Açaí 200ml</h3>
-            <div class="prod-price">R$ 5,00</div>
-            <p class="prod-desc">1 frutas + 3 complementos inclusos. O tamanho ideal pra caprichar em tudo o que você mais gosta.</p>
-            <a class="btn btn-gold" href="#montar">Montar este açaí</a>
+            <h3>Açaí Tradicional</h3>
+            <div class="prod-price">A partir de R$ 5,00</div>
+            <p class="prod-desc">Copo 180ml, Bandeja 300ml, 400ml ou 600ml. Você escolhe as frutas e complementos direto na conversa do WhatsApp.</p>
+            <a class="btn btn-gold" href="#montar" data-select-mode="tradicional">Montar este açaí</a>
           </div>
         </div>
 
@@ -447,56 +447,41 @@
               <span class="step-num">1</span>
               <div>
                 <h4>Escolha o tamanho</h4>
-                <p class="step-note">Cada tamanho já inclui uma quantidade de frutas e complementos.</p>
+                <p class="step-note">No Trufado, o tamanho já inclui frutas, complementos e creme.</p>
               </div>
             </div>
             <div class="size-grid" id="sizeGrid">
-              <div class="size-opt" data-size="200" data-price="8" data-fruit="1" data-comp="3">
-                <div class="ml">200ml</div>
-                <div class="desc">1 fruta + 3 complementos</div>
+              <div class="size-opt" data-size="180" data-price="5" data-fruit="0" data-comp="0">
+                <div class="ml">Copo 180ml</div>
+                <div class="desc">Você escolhe as frutas e complementos no WhatsApp</div>
+                <div class="price">R$ 5,00</div>
+              </div>
+              <div class="size-opt" data-size="300" data-price="8" data-fruit="0" data-comp="0">
+                <div class="ml">Bandeja 300ml</div>
+                <div class="desc">Você escolhe as frutas e complementos no WhatsApp</div>
                 <div class="price">R$ 8,00</div>
               </div>
-              <div class="size-opt" data-size="350" data-price="10" data-fruit="2" data-comp="4">
-                <div class="ml">350ml</div>
-                <div class="desc">2 frutas + 4 complementos</div>
+              <div class="size-opt" data-size="400" data-price="10" data-fruit="0" data-comp="0">
+                <div class="ml">Bandeja 400ml</div>
+                <div class="desc">Você escolhe as frutas e complementos no WhatsApp</div>
                 <div class="price">R$ 10,00</div>
               </div>
-              <div class="size-opt" data-size="600" data-price="16" data-fruit="3" data-comp="10">
-                <div class="ml">600ml</div>
-                <div class="desc">3 frutas + 10 complementos</div>
+              <div class="size-opt" data-size="600" data-price="16" data-fruit="0" data-comp="0">
+                <div class="ml">Bandeja 600ml</div>
+                <div class="desc">Você escolhe as frutas e complementos no WhatsApp</div>
                 <div class="price">R$ 16,00</div>
               </div>
             </div>
             <div class="size-grid" id="sizeGridTrufado" style="display:none;">
-              <div class="size-opt" data-size="200" data-price="5" data-fruit="1" data-comp="2" data-trufado="1">
-                <div class="ml">200ml</div>
-                <div class="desc">1 fruta + 2 complementos + creme</div>
-                <div class="price">R$ 5,00</div>
-              </div>
-              <div class="size-opt" data-size="350" data-price="8" data-fruit="2" data-comp="3" data-trufado="1">
-                <div class="ml">350ml</div>
-                <div class="desc">2 frutas + 3 complementos + creme</div>
-                <div class="price">R$ 8,00</div>
-              </div>
-              <div class="size-opt" data-size="400" data-price="10" data-fruit="2" data-comp="4" data-trufado="1">
-                <div class="ml">400ml</div>
-                <div class="desc">2 frutas + 4 complementos + creme</div>
-                <div class="price">R$ 10,00</div>
-              </div>
-              <div class="size-opt" data-size="550" data-price="16" data-fruit="3" data-comp="7" data-trufado="1">
-                <div class="ml">550ml</div>
-                <div class="desc">3 frutas + 7 complementos + creme</div>
-                <div class="price">R$ 16,00</div>
-              </div>
-              <div class="size-opt" data-size="770" data-price="12" data-fruit="1" data-comp="3" data-trufado="1">
-                <div class="ml">770ml</div>
-                <div class="desc">Copão — 1 fruta + 3 complementos + creme</div>
-                <div class="price">R$ 12,00</div>
+              <div class="size-opt" data-size="770" data-price="23" data-fruit="1" data-comp="3" data-trufado="1">
+                <div class="ml">Copão 770ml</div>
+                <div class="desc">1 fruta + 3 complementos + creme</div>
+                <div class="price">R$ 23,00</div>
               </div>
             </div>
           </div>
 
-          <div class="step" id="stepFrutas">
+          <div class="step" id="stepFrutas" style="display:none;">
             <div class="step-head">
               <span class="step-num">2</span>
               <div>
@@ -513,7 +498,7 @@
             <div class="counter" id="frutasCounter"></div>
           </div>
 
-          <div class="step" id="stepComp">
+          <div class="step" id="stepComp" style="display:none;">
             <div class="step-head">
               <span class="step-num">3</span>
               <div>
@@ -611,12 +596,13 @@
           <table class="table-sizes">
             <thead><tr><th>Tamanho</th><th>Inclui</th><th>Preço</th></tr></thead>
             <tbody>
-              <tr><td>200ml</td><td>1 fruta + 3 complementos</td><td class="price">R$ 8,00</td></tr>
-              <tr><td>350ml</td><td>2 frutas + 4 complementos</td><td class="price">R$ 10,00</td></tr>
-              <tr><td>600ml</td><td>3 frutas + 10 complementos</td><td class="price">R$ 16,00</td></tr>
+              <tr><td>Copo 180ml</td><td>Você escolhe no WhatsApp</td><td class="price">R$ 5,00</td></tr>
+              <tr><td>Bandeja 300ml</td><td>Você escolhe no WhatsApp</td><td class="price">R$ 8,00</td></tr>
+              <tr><td>Bandeja 400ml</td><td>Você escolhe no WhatsApp</td><td class="price">R$ 10,00</td></tr>
+              <tr><td>Bandeja 600ml</td><td>Você escolhe no WhatsApp</td><td class="price">R$ 16,00</td></tr>
             </tbody>
           </table>
-          <p class="step-note" style="margin-top:12px;">Fruta ou complemento adicional: <b>+R$ 1,00</b> cada</p>
+          <p class="step-note" style="margin-top:12px;">As frutas e complementos do Tradicional são combinados direto no WhatsApp, na hora do pedido.</p>
 
           <h4 style="margin-top:26px;">Açaí Trufado</h4>
           <table class="table-sizes">
@@ -858,7 +844,7 @@
 
   /* ---------------- BUILDER ---------------- */
   var state = {
-    mode: "tradicional", size: null, price: 0, fruitLimit: 0, compLimit: 0, isTrufado: false,
+    mode: "tradicional", size: null, sizeLabel: "", price: 0, fruitLimit: 0, compLimit: 0, isTrufado: false,
     fruits: [], comps: [], cremes: []
   };
 
@@ -891,6 +877,8 @@
       state.mode = tab.getAttribute("data-mode");
       sizeGrid.style.display = state.mode === "tradicional" ? "grid" : "none";
       sizeGridTrufado.style.display = state.mode === "trufado" ? "grid" : "none";
+      stepFrutas.style.display = state.mode === "trufado" ? "block" : "none";
+      stepComp.style.display = state.mode === "trufado" ? "block" : "none";
       resetSelections();
       renderSummary();
     });
@@ -906,14 +894,15 @@
         state.fruitLimit = parseInt(opt.getAttribute("data-fruit"), 10);
         state.compLimit = parseInt(opt.getAttribute("data-comp"), 10);
         state.isTrufado = opt.getAttribute("data-trufado") === "1";
+        state.sizeLabel = opt.querySelector(".ml").textContent;
 
         state.fruits = []; state.comps = []; state.cremes = [];
         frutasGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
         compGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
         cremeGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
 
-        stepFrutas.style.display = "block";
-        stepComp.style.display = "block";
+        stepFrutas.style.display = state.mode === "trufado" ? "block" : "none";
+        stepComp.style.display = state.mode === "trufado" ? "block" : "none";
         stepCreme.classList.toggle("show", state.isTrufado);
 
         document.getElementById("frutasNote").innerHTML = state.isTrufado
@@ -929,6 +918,14 @@
   }
   bindSizeGrid(sizeGrid);
   bindSizeGrid(sizeGridTrufado);
+
+  document.querySelectorAll("[data-select-mode]").forEach(function(link){
+    link.addEventListener("click", function(){
+      var target = link.getAttribute("data-select-mode");
+      var tab = modeTabs.querySelector('.mode-tab[data-mode="' + target + '"]');
+      if(tab && !tab.classList.contains("selected")) tab.click();
+    });
+  });
 
   function toggleChip(btn, list, limit, extraPriceEach){
     var name = btn.getAttribute("data-name");
@@ -992,25 +989,25 @@
     sendWhats.style.pointerEvents = "auto";
     sendWhats.style.opacity = "1";
 
-    var label = (state.isTrufado ? "Açaí Trufado " : "Açaí Tradicional ") + state.size + "ml";
+    var label = (state.isTrufado ? "Açaí Trufado — " : "Açaí Tradicional — ") + state.sizeLabel;
     summarySize.textContent = label;
 
     var total = state.price;
     var items = [];
 
-    frutasCounter.innerHTML = "Selecionadas: <b>" + state.fruits.length + "/" + state.fruitLimit + "</b> incluídas";
-    compCounter.innerHTML = "Selecionados: <b>" + state.comps.length + "/" + state.compLimit + "</b> incluídos";
+    if(state.mode === "trufado"){
+      frutasCounter.innerHTML = "Selecionadas: <b>" + state.fruits.length + "/" + state.fruitLimit + "</b> incluídas";
+      compCounter.innerHTML = "Selecionados: <b>" + state.comps.length + "/" + state.compLimit + "</b> incluídos";
 
-    var extraFruits = Math.max(0, state.fruits.length - state.fruitLimit);
-    var extraComps = Math.max(0, state.comps.length - state.compLimit);
-    total += extraFruits * 1 + extraComps * 1;
+      var extraFruits = Math.max(0, state.fruits.length - state.fruitLimit);
+      var extraComps = Math.max(0, state.comps.length - state.compLimit);
+      total += extraFruits * 1 + extraComps * 1;
 
-    if(state.fruits.length) items.push({ label: "Frutas", value: state.fruits.join(", ") });
-    if(extraFruits > 0) items.push({ label: "Fruta extra (" + extraFruits + "x)", value: fmt(extraFruits) });
-    if(state.comps.length) items.push({ label: "Complementos", value: state.comps.join(", ") });
-    if(extraComps > 0) items.push({ label: "Complemento extra (" + extraComps + "x)", value: fmt(extraComps) });
+      if(state.fruits.length) items.push({ label: "Frutas", value: state.fruits.join(", ") });
+      if(extraFruits > 0) items.push({ label: "Fruta extra (" + extraFruits + "x)", value: fmt(extraFruits) });
+      if(state.comps.length) items.push({ label: "Complementos", value: state.comps.join(", ") });
+      if(extraComps > 0) items.push({ label: "Complemento extra (" + extraComps + "x)", value: fmt(extraComps) });
 
-    if(state.isTrufado){
       cremeCounter.innerHTML = "Creme incluso: <b>" + Math.min(state.cremes.length,1) + "/1</b>";
       var extraCremes = Math.max(0, state.cremes.length - 1);
       total += extraCremes * 3;
@@ -1020,6 +1017,8 @@
       if(extraCremes > 0){
         items.push({ label: "Creme extra (" + extraCremes + "x)", value: fmt(extraCremes * 3) });
       }
+    } else {
+      items.push({ label: "Frutas e complementos", value: "Você escolhe no WhatsApp" });
     }
 
     summaryList.innerHTML = items.length
@@ -1029,18 +1028,25 @@
     summaryTotal.textContent = fmt(total);
 
     // fill the cup visual proportionally to how "full" the choice is
-    var baseFill = state.isTrufado ? 0.55 : 0.35;
-    var fullness = Math.min(1, baseFill + ((state.fruits.length + state.comps.length) / Math.max(1, state.fruitLimit + state.compLimit)) * 0.45 + (state.isTrufado ? state.cremes.length * 0.1 : 0));
+    var fullness;
+    if(state.mode === "trufado"){
+      var baseFill = 0.55;
+      fullness = Math.min(1, baseFill + ((state.fruits.length + state.comps.length) / Math.max(1, state.fruitLimit + state.compLimit)) * 0.45 + (state.cremes.length * 0.1));
+    } else {
+      fullness = 0.6;
+    }
     var maxH = 120, h = maxH * fullness;
     cupFill.setAttribute("height", h);
     cupFill.setAttribute("y", 140 - h);
 
     // build whatsapp message
     var msg = "Olá! Quero montar meu açaí 💜\n\n🥤 Tamanho: " + label;
-    msg += "\n🍓 Frutas: " + (state.fruits.join(", ") || "a combinar");
-    msg += "\n🍬 Complementos: " + (state.comps.join(", ") || "a combinar");
-    if(state.isTrufado){
+    if(state.mode === "trufado"){
+      msg += "\n🍓 Frutas: " + (state.fruits.join(", ") || "a combinar");
+      msg += "\n🍬 Complementos: " + (state.comps.join(", ") || "a combinar");
       msg += "\n🍫 Creme: " + (state.cremes.join(", ") || "a combinar");
+    } else {
+      msg += "\n🍓 Frutas e complementos: vou escolher certinho por aqui no chat 😊";
     }
     msg += "\n💰 Total estimado: " + fmt(total);
     msg += "\n\n📍 Retirada: Santa Terezinha - Alberto Maia, Camaragibe (ou peço pelo 99)";
