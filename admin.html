@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Açaí — Adicionar fotos</title>
+<link rel="icon" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#190630; --panel:#2c0f57; --purple:#7C2CE0; --purple-light:#A66BF0;
+    --gold:#FFC93C; --gold-deep:#F2A900; --ink:#FBF3FF; --muted:#C7ABE8; --line:rgba(255,255,255,0.12);
+    --radius:20px; --ff-display:'Baloo 2', system-ui, sans-serif; --ff-body:'Mulish', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; font-family:var(--ff-body); color:var(--ink);
+    background:
+      radial-gradient(1000px 500px at 10% -10%, rgba(214,25,154,0.3), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, #12041f 100%);
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:40px 20px 80px;}
+  header{display:flex; align-items:center; gap:14px; margin-bottom:8px;}
+  header img{width:48px; height:48px; border-radius:50%; box-shadow:0 0 0 2px var(--gold); object-fit:cover;}
+  h1{font-family:var(--ff-display); font-size:26px; margin:0; color:var(--gold);}
+  .sub{color:var(--muted); font-size:14px; margin:6px 0 30px;}
+  a.back{color:var(--muted); text-decoration:none; font-size:13px; font-weight:700;}
+  a.back:hover{color:var(--gold);}
+
+  .panel{
+    background:linear-gradient(160deg, var(--panel), #240a45); border:1px solid var(--line);
+    border-radius:var(--radius); padding:26px; margin-bottom:24px;
+  }
+  .panel h2{font-family:var(--ff-display); font-size:19px; margin:0 0 6px;}
+  .panel p.hint{color:var(--muted); font-size:13.5px; margin:0 0 18px;}
+
+  .drop{
+    border:2px dashed var(--line); border-radius:16px; padding:36px 20px; text-align:center;
+    cursor:pointer; transition:.2s ease; position:relative;
+  }
+  .drop.hover, .drop:hover{border-color:var(--gold); background:rgba(255,201,60,0.05);}
+  .drop input{position:absolute; inset:0; opacity:0; cursor:pointer;}
+  .drop-icon{font-size:34px; margin-bottom:10px;}
+  .drop b{color:var(--gold);}
+
+  .field{margin-top:16px;}
+  .field label{display:block; font-size:12.5px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.6px; margin-bottom:8px;}
+  .field input[type="text"]{
+    width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid var(--line);
+    background:rgba(255,255,255,0.04); color:var(--ink); font-family:var(--ff-body); font-size:14.5px;
+  }
+  .field input[type="text"]:focus{outline:none; border-color:var(--gold);}
+
+  .preview-row{display:flex; gap:14px; align-items:center; margin-top:16px; flex-wrap:wrap;}
+  .preview-thumb{width:110px; height:110px; border-radius:12px; object-fit:cover; border:1px solid var(--line);}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:800; font-size:14.5px;
+    padding:13px 24px; border-radius:999px; border:none; cursor:pointer; text-decoration:none; transition:.18s ease;
+  }
+  .btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-deep)); color:#3A1200;}
+  .btn-gold:hover{transform:translateY(-2px);}
+  .btn-gold:disabled{opacity:.4; cursor:not-allowed; transform:none;}
+  .btn-danger{background:rgba(255,255,255,0.06); color:#ff9797; border:1px solid rgba(255,120,120,0.35); font-size:12.5px; padding:8px 14px;}
+  .btn-danger:hover{background:rgba(255,80,80,0.15);}
+
+  .status{margin-top:14px; font-size:13.5px; font-weight:700; min-height:18px;}
+  .status.ok{color:#7CE8A4;}
+  .status.err{color:#FF9797;}
+  .status.busy{color:var(--muted);}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:16px;}
+  .card{background:rgba(255,255,255,0.03); border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+  .card img{width:100%; aspect-ratio:4/5; object-fit:cover; display:block;}
+  .card-body{padding:10px 12px; display:flex; flex-direction:column; gap:8px;}
+  .card-body span{font-size:12.5px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .empty{color:var(--muted); font-size:14px; padding:20px 0; text-align:center;}
+  .note-box{
+    background:rgba(255,201,60,0.08); border:1px solid rgba(255,201,60,0.3); border-radius:12px;
+    padding:14px 16px; font-size:13px; color:var(--muted); margin-top:20px; line-height:1.6;
+  }
+  .note-box b{color:var(--gold);}
+  .spinner{
+    display:inline-block; width:14px; height:14px; border-radius:50%;
+    border:2px solid rgba(255,255,255,0.3); border-top-color:var(--gold); animation:spin .7s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="images/logo.jpg" alt="Logo Seu Açaí">
+    <div>
+      <h1>Adicionar fotos</h1>
+    </div>
+  </header>
+  <p class="sub">Envie fotos aqui e elas aparecem automaticamente no carrossel e na galeria do site. <a class="back" href="index.html">← Voltar para o site</a></p>
+
+  <div class="panel">
+    <h2>Nova foto</h2>
+    <p class="hint">Escolha uma imagem do seu computador ou celular. Formatos aceitos: JPG, PNG, WEBP.</p>
+
+    <label class="drop" id="dropZone">
+      <div class="drop-icon">📸</div>
+      <div><b>Clique para escolher</b> ou arraste a foto aqui</div>
+      <input type="file" id="fileInput" accept="image/*">
+    </label>
+
+    <div class="preview-row" id="previewRow" style="display:none;">
+      <img class="preview-thumb" id="previewImg" alt="Pré-visualização">
+      <div style="flex:1; min-width:200px;">
+        <div class="field">
+          <label for="captionInput">Legenda (opcional)</label>
+          <input type="text" id="captionInput" placeholder="Ex: Copão trufado de morango">
+        </div>
+      </div>
+    </div>
+
+    <div class="field" style="display:flex; gap:12px; align-items:center; margin-top:20px;">
+      <button class="btn btn-gold" id="saveBtn" disabled>Adicionar ao site</button>
+      <span class="status" id="status"></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Fotos no site (<span id="countLabel">0</span>)</h2>
+    <p class="hint">Essas fotos já estão publicadas na galeria e no carrossel do site.</p>
+    <div class="grid" id="galleryGrid">
+      <div class="empty">Carregando fotos…</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    💜 <b>Como funciona:</b> as fotos ficam salvas de forma compartilhada e aparecem automaticamente para todo mundo que abrir o site — não precisa mexer em nenhum código. Para tirar uma foto do ar, clique em <b>Remover</b> no card dela.
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var dropZone = document.getElementById("dropZone");
+  var fileInput = document.getElementById("fileInput");
+  var previewRow = document.getElementById("previewRow");
+  var previewImg = document.getElementById("previewImg");
+  var captionInput = document.getElementById("captionInput");
+  var saveBtn = document.getElementById("saveBtn");
+  var statusEl = document.getElementById("status");
+  var galleryGrid = document.getElementById("galleryGrid");
+  var countLabel = document.getElementById("countLabel");
+
+  var pendingDataUrl = null;
+
+  function setStatus(text, kind){
+    statusEl.textContent = text || "";
+    statusEl.className = "status" + (kind ? " " + kind : "");
+  }
+
+  dropZone.addEventListener("dragover", function(e){ e.preventDefault(); dropZone.classList.add("hover"); });
+  dropZone.addEventListener("dragleave", function(){ dropZone.classList.remove("hover"); });
+  dropZone.addEventListener("drop", function(e){
+    e.preventDefault(); dropZone.classList.remove("hover");
+    if(e.dataTransfer.files && e.dataTransfer.files[0]){
+      handleFile(e.dataTransfer.files[0]);
+    }
+  });
+  fileInput.addEventListener("change", function(){
+    if(fileInput.files && fileInput.files[0]) handleFile(fileInput.files[0]);
+  });
+
+  function handleFile(file){
+    if(!file.type.startsWith("image/")){
+      setStatus("Escolha um arquivo de imagem válido.", "err");
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      var img = new Image();
+      img.onload = function(){
+        // resize/compress so it stores efficiently
+        var maxW = 1000;
+        var scale = Math.min(1, maxW / img.width);
+        var canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        pendingDataUrl = canvas.toDataURL("image/jpeg", 0.78);
+        previewImg.src = pendingDataUrl;
+        previewRow.style.display = "flex";
+        saveBtn.disabled = false;
+        setStatus("");
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  saveBtn.addEventListener("click", async function(){
+    if(!pendingDataUrl) return;
+    if(!window.storage){
+      setStatus("Armazenamento indisponível neste ambiente.", "err");
+      return;
+    }
+    saveBtn.disabled = true;
+    setStatus("Salvando…", "busy");
+
+    try{
+      var id = "p" + Date.now() + Math.floor(Math.random()*1000);
+      var caption = captionInput.value.trim() || "Foto do Seu Açaí";
+
+      var listRes = await safeGet("carousel:list");
+      var list = [];
+      if(listRes && listRes.value){
+        try{ list = JSON.parse(listRes.value); }catch(e){ list = []; }
+      }
+      list.unshift({ id: id, caption: caption, ts: Date.now() });
+
+      await window.storage.set("carousel:img:" + id, pendingDataUrl, true);
+      await window.storage.set("carousel:list", JSON.stringify(list), true);
+
+      setStatus("Foto adicionada ao site! ✅", "ok");
+      pendingDataUrl = null;
+      previewRow.style.display = "none";
+      fileInput.value = "";
+      captionInput.value = "";
+      saveBtn.disabled = true;
+      loadGallery();
+    }catch(err){
+      console.error(err);
+      setStatus("Não foi possível salvar. Tente novamente.", "err");
+      saveBtn.disabled = false;
+    }
+  });
+
+  async function safeGet(key){
+    try{
+      return await window.storage.get(key, true);
+    }catch(e){
+      return null;
+    }
+  }
+
+  async function loadGallery(){
+    if(!window.storage){
+      galleryGrid.innerHTML = '<div class="empty">Armazenamento indisponível neste ambiente.</div>';
+      return;
+    }
+    galleryGrid.innerHTML = '<div class="empty"><span class="spinner"></span> Carregando…</div>';
+
+    var listRes = await safeGet("carousel:list");
+    var list = [];
+    if(listRes && listRes.value){
+      try{ list = JSON.parse(listRes.value); }catch(e){ list = []; }
+    }
+
+    countLabel.textContent = list.length;
+
+    if(!list.length){
+      galleryGrid.innerHTML = '<div class="empty">Nenhuma foto adicionada ainda. Envie a primeira acima! 📸</div>';
+      return;
+    }
+
+    galleryGrid.innerHTML = "";
+    for(var i = 0; i < list.length; i++){
+      (function(item){
+        var card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = '<img alt="' + escapeHtml(item.caption || "") + '"><div class="card-body"><span>' + escapeHtml(item.caption || "Sem legenda") + '</span><button class="btn btn-danger" type="button">Remover</button></div>';
+        galleryGrid.appendChild(card);
+
+        var imgEl = card.querySelector("img");
+        safeGet("carousel:img:" + item.id).then(function(res){
+          if(res && res.value) imgEl.src = res.value;
+        });
+
+        card.querySelector("button").addEventListener("click", async function(){
+          if(!confirm("Remover esta foto do site?")) return;
+          try{
+            await window.storage.delete("carousel:img:" + item.id, true);
+            var freshRes = await safeGet("carousel:list");
+            var freshList = [];
+            if(freshRes && freshRes.value){
+              try{ freshList = JSON.parse(freshRes.value); }catch(e){ freshList = []; }
+            }
+            freshList = freshList.filter(function(x){ return x.id !== item.id; });
+            await window.storage.set("carousel:list", JSON.stringify(freshList), true);
+            loadGallery();
+          }catch(e){
+            alert("Não foi possível remover agora. Tente novamente.");
+          }
+        });
+      })(list[i]);
+    }
+  }
+
+  function escapeHtml(str){
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  loadGallery();
+})();
+</script>
+</body>
+</html>

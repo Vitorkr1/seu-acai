@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Açaí — Cardápio & Monte o seu</title>
+<meta name="description" content="Cardápio digital do Seu Açaí em Camaragibe/PE. Monte seu açaí, escolha o Copão Trufado ou peça direto pelo WhatsApp.">
+<link rel="icon" href="images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #190630;
+    --bg-soft: #250b47;
+    --panel: #2c0f57;
+    --panel-2: #34125fe0;
+    --purple: #7C2CE0;
+    --purple-light: #A66BF0;
+    --magenta: #D6199A;
+    --gold: #FFC93C;
+    --gold-deep: #F2A900;
+    --cream: #FFF6E6;
+    --green: #57C26B;
+    --ink: #FBF3FF;
+    --muted: #C7ABE8;
+    --line: rgba(255,255,255,0.12);
+    --radius: 22px;
+    --radius-sm: 14px;
+    --shadow: 0 20px 50px rgba(9,0,26,0.45);
+    --ff-display: 'Baloo 2', system-ui, sans-serif;
+    --ff-body: 'Mulish', system-ui, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 550px at 12% -8%, rgba(214,25,154,0.35), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(255,201,60,0.12), transparent 55%),
+      linear-gradient(180deg, var(--bg) 0%, #12041f 100%);
+    color:var(--ink);
+    font-family:var(--ff-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  h1,h2,h3,h4{font-family:var(--ff-display); margin:0; line-height:1.08; letter-spacing:.2px;}
+  p{margin:0;}
+  ::selection{background:var(--gold); color:#1B0730;}
+  :focus-visible{outline:3px solid var(--gold); outline-offset:3px; border-radius:6px;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--ff-body); font-weight:800; letter-spacing:1.6px; text-transform:uppercase;
+    font-size:12.5px; color:var(--gold);
+  }
+  .eyebrow::before{content:"◆"; font-size:9px;}
+  .section-title{font-size:clamp(28px,4.6vw,42px); color:var(--ink);}
+  .section-sub{color:var(--muted); font-size:16px; max-width:60ch; margin-top:10px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    font-family:var(--ff-body); font-weight:800; font-size:15px;
+    padding:14px 26px; border-radius:999px; border:none; cursor:pointer;
+    text-decoration:none; transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:active{transform:translateY(0);}
+  .btn-gold{background:linear-gradient(180deg, var(--gold), var(--gold-deep)); color:#3A1200; box-shadow:0 10px 24px rgba(255,201,60,0.28);}
+  .btn-whats{background:#25D366; color:#04240f; box-shadow:0 10px 24px rgba(37,211,102,0.3);}
+  .btn-ghost{background:rgba(255,255,255,0.06); color:var(--ink); border:1.5px solid var(--line);}
+  .btn-ghost:hover{background:rgba(255,255,255,0.12);}
+  .btn:disabled{opacity:.45; cursor:not-allowed; transform:none;}
+
+  /* HEADER */
+  header{
+    position:sticky; top:0; z-index:60;
+    background:rgba(19,5,36,0.72); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; gap:16px;}
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+  .brand img{width:46px; height:46px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 2px var(--gold);}
+  .brand-name{font-family:var(--ff-display); font-weight:700; font-size:20px; color:var(--gold);}
+  .brand-name small{display:block; font-family:var(--ff-body); font-weight:600; font-size:10.5px; letter-spacing:1.2px; color:var(--muted); text-transform:uppercase;}
+  nav.links{display:flex; align-items:center; gap:26px;}
+  nav.links a{font-weight:700; font-size:14.5px; text-decoration:none; color:var(--ink); opacity:.85;}
+  nav.links a:hover{opacity:1; color:var(--gold);}
+  .nav-actions{display:flex; align-items:center; gap:10px;}
+  .burger{display:none; background:none; border:none; color:var(--ink); font-size:26px; cursor:pointer;}
+
+  /* HERO */
+  .hero{padding:64px 0 40px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:46px; align-items:center;}
+  .hero h1{font-size:clamp(38px,5.6vw,64px); color:var(--ink);}
+  .hero h1 em{font-style:normal; color:var(--gold);}
+  .hero p.lede{margin-top:16px; font-size:18px; color:var(--muted); max-width:52ch;}
+  .hero-cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px;}
+  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px;}
+  .chip{
+    display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.06);
+    border:1px solid var(--line); padding:9px 14px; border-radius:999px; font-size:13.5px; font-weight:700; color:var(--muted);
+  }
+  .chip b{color:var(--ink); font-weight:800;}
+
+  /* carousel */
+  .carousel{
+    position:relative; border-radius:28px; overflow:hidden; box-shadow:var(--shadow);
+    aspect-ratio:4/5; background:var(--panel); border:1px solid var(--line);
+  }
+  .carousel-track{position:relative; width:100%; height:100%;}
+  .carousel-slide{
+    position:absolute; inset:0; opacity:0; transition:opacity .9s ease;
+  }
+  .carousel-slide.active{opacity:1;}
+  .carousel-slide img{width:100%; height:100%; object-fit:cover;}
+  .carousel-fade{position:absolute; inset:0; background:linear-gradient(180deg, transparent 45%, rgba(15,3,30,0.85) 100%);}
+  .carousel-dots{position:absolute; bottom:16px; left:0; right:0; display:flex; justify-content:center; gap:8px; z-index:5;}
+  .carousel-dots button{width:8px; height:8px; border-radius:50%; border:none; background:rgba(255,255,255,0.4); cursor:pointer; padding:0;}
+  .carousel-dots button.active{background:var(--gold); width:22px; border-radius:5px;}
+  .carousel-badge{
+    position:absolute; top:16px; left:16px; z-index:5; background:rgba(20,5,36,0.65);
+    backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,0.25); color:var(--gold);
+    font-weight:800; font-size:12px; letter-spacing:1px; text-transform:uppercase; padding:7px 12px; border-radius:999px;
+  }
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:6; background:rgba(15,3,30,0.55);
+    border:1px solid rgba(255,255,255,0.25); color:var(--ink); width:38px; height:38px; border-radius:50%;
+    cursor:pointer; font-size:18px; display:flex; align-items:center; justify-content:center;
+  }
+  .carousel-arrow.prev{left:12px;} .carousel-arrow.next{right:12px;}
+
+  section{padding:76px 0;}
+  .section-head{display:flex; flex-direction:column; gap:12px; margin-bottom:40px; text-align:center; align-items:center;}
+
+  /* DESTAQUES */
+  .cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .prod-card{
+    background:linear-gradient(180deg, var(--panel), #240a45);
+    border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+    display:flex; flex-direction:column; box-shadow:var(--shadow);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .prod-card:hover{transform:translateY(-6px);}
+  .prod-media{position:relative; aspect-ratio:5/4; overflow:hidden;}
+  .prod-media img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .prod-card:hover .prod-media img{transform:scale(1.06);}
+  .prod-tag{position:absolute; top:12px; left:12px; background:var(--gold); color:#3A1200; font-weight:800; font-size:12px; padding:6px 12px; border-radius:999px;}
+  .prod-body{padding:22px; display:flex; flex-direction:column; gap:10px; flex:1;}
+  .prod-body h3{font-size:22px; color:var(--ink);}
+  .prod-price{font-family:var(--ff-display); font-size:24px; color:var(--gold);}
+  .prod-desc{color:var(--muted); font-size:14.5px; flex:1;}
+  .prod-body .btn{margin-top:6px;}
+
+  /* BUILDER */
+  .builder-shell{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:34px; align-items:flex-start;
+  }
+  .mode-tabs{display:flex; justify-content:center; gap:10px; margin-bottom:30px; flex-wrap:wrap;}
+  .mode-tab{
+    font-family:var(--ff-body); font-weight:800; font-size:14.5px; padding:12px 22px; border-radius:999px;
+    border:1.5px solid var(--line); background:rgba(255,255,255,0.04); color:var(--muted); cursor:pointer; transition:.18s ease;
+  }
+  .mode-tab:hover{border-color:var(--purple-light); color:var(--ink);}
+  .mode-tab.selected{background:linear-gradient(180deg,var(--gold),var(--gold-deep)); color:#3A1200; border-color:transparent; box-shadow:0 10px 22px rgba(255,201,60,0.25);}
+  .steps{display:flex; flex-direction:column; gap:26px;}
+  .step{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px;
+  }
+  .step-head{display:flex; align-items:center; gap:12px; margin-bottom:16px;}
+  .step-num{
+    width:32px; height:32px; border-radius:50%; background:linear-gradient(180deg,var(--gold),var(--gold-deep));
+    color:#3A1200; font-weight:800; display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); flex-shrink:0;
+  }
+  .step h4{font-size:19px;}
+  .step-note{color:var(--muted); font-size:13.5px; margin-top:2px;}
+
+  .size-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(100px,1fr)); gap:10px;}
+  .size-opt{
+    border:1.5px solid var(--line); border-radius:var(--radius-sm); padding:14px 10px; text-align:center; cursor:pointer;
+    background:rgba(255,255,255,0.03); transition:.15s ease;
+  }
+  .size-opt:hover{border-color:var(--purple-light);}
+  .size-opt.selected{border-color:var(--gold); background:rgba(255,201,60,0.1); box-shadow:0 0 0 1px var(--gold) inset;}
+  .size-opt .ml{font-family:var(--ff-display); font-size:19px; color:var(--ink);}
+  .size-opt .desc{font-size:11.5px; color:var(--muted); margin-top:4px; line-height:1.3;}
+  .size-opt .price{font-weight:800; color:var(--gold); margin-top:6px; font-size:14px;}
+
+  .chip-grid{display:flex; flex-wrap:wrap; gap:9px;}
+  .pick-chip{
+    border:1.5px solid var(--line); background:rgba(255,255,255,0.03); color:var(--ink);
+    padding:9px 15px; border-radius:999px; font-size:13.5px; font-weight:700; cursor:pointer; transition:.15s ease;
+  }
+  .pick-chip:hover{border-color:var(--purple-light);}
+  .pick-chip.selected{background:var(--purple); border-color:var(--purple); box-shadow:0 6px 16px rgba(124,44,224,0.35);}
+  .pick-chip.selected.extra{background:var(--magenta); border-color:var(--magenta);}
+  .counter{font-size:12.5px; font-weight:800; color:var(--muted); margin-top:12px;}
+  .counter b{color:var(--gold);}
+
+  .creme-note{display:none;}
+  .creme-note.show{display:block;}
+
+  /* summary / cup */
+  .summary-card{
+    position:sticky; top:100px; background:linear-gradient(160deg, var(--panel-2), #200a3d);
+    border:1px solid var(--line); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow);
+  }
+  .cup-wrap{display:flex; justify-content:center; margin-bottom:18px;}
+  .cup-wrap svg{width:150px; height:auto;}
+  .summary-title{font-family:var(--ff-display); font-size:20px; text-align:center; margin-bottom:4px;}
+  .summary-list{list-style:none; padding:0; margin:16px 0; display:flex; flex-direction:column; gap:8px; min-height:24px;}
+  .summary-list li{display:flex; justify-content:space-between; font-size:13.5px; color:var(--muted); gap:10px;}
+  .summary-list li b{color:var(--ink); font-weight:700;}
+  .summary-empty{color:var(--muted); font-size:13.5px; text-align:center; padding:10px 0;}
+  .summary-total{
+    display:flex; justify-content:space-between; align-items:baseline; border-top:1px dashed var(--line);
+    padding-top:14px; margin-top:6px;
+  }
+  .summary-total span{font-size:14px; color:var(--muted); font-weight:700;}
+  .summary-total b{font-family:var(--ff-display); font-size:28px; color:var(--gold);}
+  .summary-card .btn{width:100%; margin-top:18px;}
+  .summary-hint{font-size:12px; color:var(--muted); text-align:center; margin-top:10px;}
+
+  /* CARDAPIO REF */
+  .ref-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .ref-panel{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:26px;}
+  .ref-panel h4{font-size:17px; color:var(--gold); margin-bottom:14px;}
+  .ref-panel ul{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:9px 16px;}
+  .ref-panel li{font-size:14px; color:var(--muted); padding-left:16px; position:relative;}
+  .ref-panel li::before{content:"•"; position:absolute; left:0; color:var(--gold);}
+  .table-sizes{width:100%; border-collapse:collapse; margin-top:4px;}
+  .table-sizes th, .table-sizes td{text-align:left; padding:10px 8px; border-bottom:1px solid var(--line); font-size:13.5px;}
+  .table-sizes th{color:var(--gold); font-size:12px; text-transform:uppercase; letter-spacing:.5px;}
+  .table-sizes td.price{color:var(--gold); font-weight:800; text-align:right;}
+
+  /* GALLERY */
+  .gallery{
+    display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px;
+  }
+  .gallery::-webkit-scrollbar{height:8px;}
+  .gallery::-webkit-scrollbar-thumb{background:var(--purple); border-radius:10px;}
+  .gallery figure{
+    flex:0 0 260px; scroll-snap-align:start; margin:0; border-radius:18px; overflow:hidden;
+    border:1px solid var(--line); background:var(--panel); aspect-ratio:4/5;
+  }
+  .gallery figure img{width:100%; height:100%; object-fit:cover;}
+  .gallery-empty-hint{color:var(--muted); font-size:13px; text-align:center; margin-top:10px;}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line); background:#12041f; padding:56px 0 26px;}
+  .foot-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:40px;}
+  .foot-brand{display:flex; align-items:center; gap:12px;}
+  .foot-brand img{width:52px; height:52px; border-radius:50%; box-shadow:0 0 0 2px var(--gold);}
+  .foot-tag{color:var(--muted); font-size:14px; margin-top:14px; max-width:32ch;}
+  .foot-col h5{font-family:var(--ff-display); color:var(--gold); font-size:15px; margin-bottom:14px;}
+  .foot-row{display:flex; align-items:flex-start; gap:10px; margin-bottom:12px; font-size:14px; color:var(--muted);}
+  .foot-row b{color:var(--ink); display:block; font-size:13px;}
+  .foot-social{display:flex; gap:12px; margin-top:6px;}
+  .foot-social a{
+    width:40px; height:40px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center;
+    justify-content:center; text-decoration:none; transition:.2s ease;
+  }
+  .foot-social a:hover{background:var(--purple); border-color:var(--purple);}
+  .foot-bottom{margin-top:40px; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:var(--muted); font-size:12.5px;}
+  .foot-bottom a{color:var(--gold); text-decoration:none; font-weight:700;}
+
+  .whats-float{
+    position:fixed; bottom:22px; right:22px; z-index:70; width:60px; height:60px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 28px rgba(0,0,0,0.4);
+    text-decoration:none;
+  }
+  .whats-float svg{width:30px; height:30px;}
+
+  @media (max-width:960px){
+    nav.links, .nav-actions .btn-ghost{display:none;}
+    .burger{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .cards3{grid-template-columns:1fr;}
+    .builder-shell{grid-template-columns:1fr;}
+    .summary-card{position:static;}
+    .ref-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr; gap:30px;}
+    .size-grid{grid-template-columns:repeat(2,1fr);}
+    .ref-panel ul{grid-template-columns:1fr;}
+  }
+  @media (max-width:520px){
+    .hero{padding:40px 0 24px;}
+    section{padding:52px 0;}
+    .prod-media{aspect-ratio:16/10;}
+  }
+
+  .mobile-menu{
+    display:none; position:fixed; inset:0; z-index:80; background:rgba(12,3,24,0.97); padding:24px;
+    flex-direction:column; gap:22px;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-family:var(--ff-display); font-size:24px; text-decoration:none; color:var(--ink);}
+  .mobile-menu .close-x{align-self:flex-end; background:none; border:none; color:var(--ink); font-size:30px; cursor:pointer;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .carousel-slide{transition:none;}
+    *{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <a class="brand" href="#top">
+      <img src="images/logo.jpg" alt="Logo Seu Açaí">
+      <span class="brand-name">Seu Açaí<small>Açaí & Cremes</small></span>
+    </a>
+    <nav class="links">
+      <a href="#destaques">Destaques</a>
+      <a href="#montar">Monte o seu</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="https://www.instagram.com/seuacai_01/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-whats" id="hdrWhats" href="#" target="_blank" rel="noopener">Pedir no Zap</a>
+      <button class="burger" id="burgerBtn" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-x" id="closeMenu" aria-label="Fechar menu">×</button>
+  <a href="#destaques">Destaques</a>
+  <a href="#montar">Monte o seu</a>
+  <a href="#cardapio">Cardápio</a>
+  <a href="#galeria">Galeria</a>
+  <a href="#contato">Contato</a>
+  <a href="https://www.instagram.com/seuacai_01/" target="_blank" rel="noopener">Instagram</a>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Camaragibe · Santa Terezinha</span>
+        <h1>Açaí de verdade, <em>montado do seu jeito.</em></h1>
+        <p class="lede">Copão trufado, açaí no capricho e a bandeja generosa que todo mundo pede. Escolha as frutas e complementos e mande direto pro nosso zap — sem enrolação.</p>
+        <div class="hero-cta">
+          <a class="btn btn-gold" href="#montar">Monte o seu açaí</a>
+          <a class="btn btn-ghost" href="#destaques">Ver destaques</a>
+        </div>
+        <div class="chips">
+          <span class="chip">🏠 <b>Retirada</b> no local</span>
+          <span class="chip">🛵 <b>99</b> disponível</span>
+          <span class="chip">🕦 Todos os dias <b>até 2h</b></span>
+          <span class="chip">📍 <b>Alberto Maia</b>, Camaragibe</span>
+        </div>
+      </div>
+      <div class="carousel" id="heroCarousel">
+        <span class="carousel-badge">Seu Açaí ✨</span>
+        <div class="carousel-track" id="heroTrack"></div>
+        <div class="carousel-fade"></div>
+        <button class="carousel-arrow prev" id="heroPrev" aria-label="Foto anterior">‹</button>
+        <button class="carousel-arrow next" id="heroNext" aria-label="Próxima foto">›</button>
+        <div class="carousel-dots" id="heroDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTAQUES -->
+  <section id="destaques">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Os queridinhos</span>
+        <h2 class="section-title">Destaques da casa</h2>
+        <p class="section-sub">Os três formatos mais pedidos — prontos ou montados do seu jeito.</p>
+      </div>
+      <div class="cards3">
+
+        <div class="prod-card">
+          <div class="prod-media">
+            <span class="prod-tag">Mais pedido</span>
+            <img src="images/foto1.jpg" alt="Copão Trufado 770ml com camadas de açaí, creme e biscoito">
+          </div>
+          <div class="prod-body">
+            <h3>Copão Trufado 770ml</h3>
+            <div class="prod-price">R$ 23,00</div>
+            <p class="prod-desc">Camadas de açaí cremoso, calda e biscoito triturado. Já inclui 1 fruta + 3 complementos + o creme que você escolher — Morango, Ninho ou Avelã.</p>
+            <a class="btn btn-gold" href="#montar">Montar meu Trufado</a>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-media">
+            <span class="prod-tag">Monte do seu jeito</span>
+            <img src="images/787768851_1066060802833539_2677554711284602414_n_.jpg" alt="Açaí 600ml com frutas e complementos por cima">
+          </div>
+          <div class="prod-body">
+            <h3>Açaí 200ml</h3>
+            <div class="prod-price">R$ 8,00</div>
+            <p class="prod-desc">1 frutas + 3 complementos inclusos. O tamanho ideal pra caprichar em tudo o que você mais gosta.</p>
+            <a class="btn btn-gold" href="#montar">Montar este açaí</a>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-media">
+            <span class="prod-tag">Por peso</span>
+            <img src="images/foto6.jpg" alt="Açaí na bandeja com frutas, granola e complementos, pesado na balança">
+          </div>
+          <div class="prod-body">
+            <h3>Açaí de Bandeja</h3>
+            <div class="prod-price">Venha montar o seu</div>
+            <p class="prod-desc">Servido na bandeja e pesado na hora — capricha nos toppings do jeito que quiser. Ideal pra dividir ou pra quem quer montar um verdadeiro festival de coberturas.</p>
+            <a class="btn btn-whats prod-order" data-item="Açaí de Bandeja (por peso)" data-price="0" href="#" target="_blank" rel="noopener">Pedir no Zap</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MONTE O SEU -->
+  <section id="montar">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">A parte boa</span>
+        <h2 class="section-title">Monte o seu açaí</h2>
+        <p class="section-sub">Escolha a linha, o tamanho, as frutas e os complementos. O resumo do pedido já sai pronto pra enviar no WhatsApp.</p>
+      </div>
+
+      <div class="mode-tabs" id="modeTabs">
+        <button class="mode-tab selected" data-mode="tradicional" type="button">🍇 Açaí Tradicional</button>
+        <button class="mode-tab" data-mode="trufado" type="button">🍫 Açaí Trufado</button>
+      </div>
+
+      <div class="builder-shell">
+        <div class="steps">
+
+          <div class="step">
+            <div class="step-head">
+              <span class="step-num">1</span>
+              <div>
+                <h4>Escolha o tamanho</h4>
+                <p class="step-note">Cada tamanho já inclui uma quantidade de frutas e complementos.</p>
+              </div>
+            </div>
+            <div class="size-grid" id="sizeGrid">
+              <div class="size-opt" data-size="200" data-price="8" data-fruit="1" data-comp="3">
+                <div class="ml">200ml</div>
+                <div class="desc">1 fruta + 3 complementos</div>
+                <div class="price">R$ 8,00</div>
+              </div>
+              <div class="size-opt" data-size="350" data-price="10" data-fruit="2" data-comp="4">
+                <div class="ml">350ml</div>
+                <div class="desc">2 frutas + 4 complementos</div>
+                <div class="price">R$ 10,00</div>
+              </div>
+              <div class="size-opt" data-size="600" data-price="16" data-fruit="3" data-comp="10">
+                <div class="ml">600ml</div>
+                <div class="desc">3 frutas + 10 complementos</div>
+                <div class="price">R$ 16,00</div>
+              </div>
+            </div>
+            <div class="size-grid" id="sizeGridTrufado" style="display:none;">
+              <div class="size-opt" data-size="200" data-price="5" data-fruit="1" data-comp="2" data-trufado="1">
+                <div class="ml">200ml</div>
+                <div class="desc">1 fruta + 2 complementos + creme</div>
+                <div class="price">R$ 5,00</div>
+              </div>
+              <div class="size-opt" data-size="350" data-price="8" data-fruit="2" data-comp="3" data-trufado="1">
+                <div class="ml">350ml</div>
+                <div class="desc">2 frutas + 3 complementos + creme</div>
+                <div class="price">R$ 8,00</div>
+              </div>
+              <div class="size-opt" data-size="400" data-price="10" data-fruit="2" data-comp="4" data-trufado="1">
+                <div class="ml">400ml</div>
+                <div class="desc">2 frutas + 4 complementos + creme</div>
+                <div class="price">R$ 10,00</div>
+              </div>
+              <div class="size-opt" data-size="550" data-price="16" data-fruit="3" data-comp="7" data-trufado="1">
+                <div class="ml">550ml</div>
+                <div class="desc">3 frutas + 7 complementos + creme</div>
+                <div class="price">R$ 16,00</div>
+              </div>
+              <div class="size-opt" data-size="770" data-price="12" data-fruit="1" data-comp="3" data-trufado="1">
+                <div class="ml">770ml</div>
+                <div class="desc">Copão — 1 fruta + 3 complementos + creme</div>
+                <div class="price">R$ 12,00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" id="stepFrutas">
+            <div class="step-head">
+              <span class="step-num">2</span>
+              <div>
+                <h4>Escolha as frutas</h4>
+                <p class="step-note" id="frutasNote">Fruta extra: <b>+R$ 1,00</b> cada.</p>
+              </div>
+            </div>
+            <div class="chip-grid" id="frutasGrid">
+              <button class="pick-chip" data-name="Banana">Banana</button>
+              <button class="pick-chip" data-name="Morango">Morango</button>
+              <button class="pick-chip" data-name="Uva">Uva</button>
+              <button class="pick-chip" data-name="Abacaxi">Abacaxi</button>
+            </div>
+            <div class="counter" id="frutasCounter"></div>
+          </div>
+
+          <div class="step" id="stepComp">
+            <div class="step-head">
+              <span class="step-num">3</span>
+              <div>
+                <h4>Escolha os complementos</h4>
+                <p class="step-note" id="compNote">Complemento extra: <b>+R$ 1,00</b> cada.</p>
+              </div>
+            </div>
+            <div class="chip-grid" id="compGrid">
+              <button class="pick-chip" data-name="Leite Condensado">Leite Condensado</button>
+              <button class="pick-chip" data-name="Calda de Chocolate">Calda de Chocolate</button>
+              <button class="pick-chip" data-name="Calda de Morango">Calda de Morango</button>
+              <button class="pick-chip" data-name="Canudo de Morango">Canudo de Morango</button>
+              <button class="pick-chip" data-name="Canudo de Chocolate">Canudo de Chocolate</button>
+              <button class="pick-chip" data-name="Canudo Napolitano">Canudo Napolitano</button>
+              <button class="pick-chip" data-name="Leite em Pó">Leite em Pó</button>
+              <button class="pick-chip" data-name="Granola">Granola</button>
+              <button class="pick-chip" data-name="Xerém de Amendoim">Xerém de Amendoim</button>
+              <button class="pick-chip" data-name="Jujuba">Jujuba</button>
+              <button class="pick-chip" data-name="Farinha de Amendoim">Farinha de Amendoim</button>
+              <button class="pick-chip" data-name="Farinha de Biscoito">Farinha de Biscoito</button>
+              <button class="pick-chip" data-name="M&M's">M&M's</button>
+              <button class="pick-chip" data-name="Ovomaltine">Ovomaltine</button>
+              <button class="pick-chip" data-name="Paçoca">Paçoca</button>
+              <button class="pick-chip" data-name="Chocoboll">Chocoboll</button>
+              <button class="pick-chip" data-name="Palito de Chocolate">Palito de Chocolate</button>
+              <button class="pick-chip" data-name="Sucrilhos">Sucrilhos</button>
+            </div>
+            <div class="counter" id="compCounter"></div>
+          </div>
+
+          <div class="step creme-note" id="stepCreme">
+            <span class="eyebrow" style="margin-bottom:14px; display:inline-flex;">Área do Trufado</span>
+            <div class="step-head">
+              <span class="step-num">4</span>
+              <div>
+                <h4>Escolha o creme</h4>
+                <p class="step-note">1 creme incluso em todo Açaí Trufado · creme extra <b>+R$ 3,00</b></p>
+              </div>
+            </div>
+            <div class="chip-grid" id="cremeGrid">
+              <button class="pick-chip" data-name="Creme de Maracujá">Creme de Maracujá</button>
+              <button class="pick-chip" data-name="Creme de Morango">Creme de Morango</button>
+              <button class="pick-chip" data-name="Creme de Ninho">Creme de Ninho</button>
+              <button class="pick-chip" data-name="Creme de Avelã">Creme de Avelã</button>
+            </div>
+            <div class="counter" id="cremeCounter"></div>
+          </div>
+
+        </div>
+
+        <div class="summary-card">
+          <div class="cup-wrap">
+            <svg viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <clipPath id="cupClip">
+                  <path d="M18 20 L102 20 L92 135 Q92 145 80 145 L40 145 Q28 145 28 135 Z"/>
+                </clipPath>
+                <linearGradient id="fillGrad" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0" stop-color="#5B1876"/>
+                  <stop offset="1" stop-color="#A66BF0"/>
+                </linearGradient>
+              </defs>
+              <path d="M18 20 L102 20 L92 135 Q92 145 80 145 L40 145 Q28 145 28 135 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+              <rect id="cupFill" x="20" y="140" width="80" height="0" fill="url(#fillGrad)" clip-path="url(#cupClip)"/>
+              <ellipse id="cupTopFruit" cx="60" cy="20" rx="0" ry="0" fill="#E8547B" opacity="0"/>
+              <path d="M14 16 L106 16 L102 26 L18 26 Z" fill="#F3E7FF" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="summary-title" id="summarySize">Escolha um tamanho</div>
+          <ul class="summary-list" id="summaryList">
+            <li class="summary-empty">Seus itens aparecem aqui ✨</li>
+          </ul>
+          <div class="summary-total">
+            <span>Total estimado</span>
+            <b id="summaryTotal">R$ 0,00</b>
+          </div>
+          <a class="btn btn-whats" id="sendWhats" href="#" target="_blank" rel="noopener">Enviar pedido no WhatsApp</a>
+          <p class="summary-hint">Vai abrir o WhatsApp com seu pedido já escrito ✍️</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDAPIO REFERENCIA -->
+  <section id="cardapio">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Pra consultar rapidinho</span>
+        <h2 class="section-title">Cardápio completo</h2>
+        <p class="section-sub">Tamanhos, frutas e complementos disponíveis pra montar o seu açaí.</p>
+      </div>
+      <div class="ref-grid">
+        <div class="ref-panel">
+          <h4>Açaí Tradicional</h4>
+          <table class="table-sizes">
+            <thead><tr><th>Tamanho</th><th>Inclui</th><th>Preço</th></tr></thead>
+            <tbody>
+              <tr><td>200ml</td><td>1 fruta + 3 complementos</td><td class="price">R$ 8,00</td></tr>
+              <tr><td>350ml</td><td>2 frutas + 4 complementos</td><td class="price">R$ 10,00</td></tr>
+              <tr><td>600ml</td><td>3 frutas + 10 complementos</td><td class="price">R$ 16,00</td></tr>
+            </tbody>
+          </table>
+          <p class="step-note" style="margin-top:12px;">Fruta ou complemento adicional: <b>+R$ 1,00</b> cada</p>
+
+          <h4 style="margin-top:26px;">Açaí Trufado</h4>
+          <table class="table-sizes">
+            <thead><tr><th>Tamanho</th><th>Inclui</th><th>Preço</th></tr></thead>
+            <tbody>
+              <tr><td>200ml</td><td>1 fruta + 2 complementos + creme</td><td class="price">R$ 5,00</td></tr>
+              <tr><td>350ml</td><td>2 frutas + 3 complementos + creme</td><td class="price">R$ 8,00</td></tr>
+              <tr><td>400ml</td><td>2 frutas + 4 complementos + creme</td><td class="price">R$ 10,00</td></tr>
+              <tr><td>550ml</td><td>3 frutas + 7 complementos + creme</td><td class="price">R$ 16,00</td></tr>
+              <tr><td>Copão 770ml</td><td>1 fruta + 3 complementos + creme</td><td class="price">R$ 12,00</td></tr>
+            </tbody>
+          </table>
+          <p class="step-note" style="margin-top:12px;">Fruta ou complemento adicional: <b>+R$ 1,00</b> cada · Creme extra: <b>+R$ 3,00</b></p>
+
+          <h4 style="margin-top:26px;">Cremes do Trufado</h4>
+          <ul>
+            <li>Creme de Maracujá</li><li>Creme de Morango</li><li>Creme de Ninho</li><li>Creme de Avelã</li>
+          </ul>
+          <p class="step-note" style="margin-top:10px;">Todo Açaí Trufado já vem com 1 creme à sua escolha incluso no preço.</p>
+        </div>
+        <div class="ref-panel">
+          <h4>Frutas</h4>
+          <ul>
+            <li>Banana</li><li>Uva</li><li>Morango</li><li>Abacaxi</li>
+          </ul>
+          <h4 style="margin-top:22px;">Complementos</h4>
+          <ul>
+            <li>Leite Condensado</li><li>Leite em Pó</li>
+            <li>Calda de Chocolate</li><li>Granola</li>
+            <li>Calda de Morango</li><li>Xerém de Amendoim</li>
+            <li>Canudo de Morango</li><li>Jujuba</li>
+            <li>Canudo de Chocolate</li><li>Farinha de Amendoim</li>
+            <li>Canudo Napolitano</li><li>Farinha de Biscoito</li>
+            <li>M&M's</li><li>Ovomaltine</li>
+            <li>Paçoca</li><li>Chocoboll</li>
+            <li>Palito de Chocolate</li><li>Sucrilhos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Direto do balcão</span>
+        <h2 class="section-title">Galeria</h2>
+        <p class="section-sub">Um pouco do que sai da nossa cozinha todos os dias.</p>
+      </div>
+      <div class="gallery" id="galleryTrack"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="images/logo.jpg" alt="Logo Seu Açaí">
+          <div>
+            <div class="brand-name" style="color:var(--gold);">Seu Açaí</div>
+            <div style="font-size:12px; color:var(--muted); font-weight:700; letter-spacing:1px;">AÇAÍ & CREMES</div>
+          </div>
+        </div>
+        <p class="foot-tag">💜 Açaí e cremes feitos com carinho, todos os dias, no coração de Camaragibe.</p>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/seuacai_01/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" stroke="#FBF3FF" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="#FBF3FF" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.1" fill="#FBF3FF"/></svg>
+          </a>
+          <a href="#" id="footWhats" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z" stroke="#FBF3FF" stroke-width="1.6"/><path d="M8.3 8.6c.2-.6.6-.6 1-.6h.6c.2 0 .5 0 .7.5.2.6.7 1.9.8 2 .1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.2.7.3.5 1 1.3 2.1 2 .6.4 1 .3 1.3 0 .3-.3.6-.7.9-1 .2-.2.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.1.5.2.6.3.1.2.1 1-.4 1.9-.4.9-2.1 1.6-2.9 1.6-.8 0-1.7-.1-3.6-1.1-2.9-1.5-4.7-4.4-4.9-4.6-.1-.2-1.2-1.6-1.2-3.1 0-1.5.8-2.2 1.1-2.5Z" fill="#FBF3FF"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Onde e quando</h5>
+        <div class="foot-row">📍 <span><b>Ponto de retirada</b>Santa Terezinha — Alberto Maia, Camaragibe/PE</span></div>
+        <div class="foot-row">🛵 <span><b>Delivery</b>Peça também pelo 99</span></div>
+        <div class="foot-row">🕦 <span><b>Funcionamento</b>Todos os dias até às 2h</span></div>
+      </div>
+      <div class="foot-col">
+        <h5>Fale com a gente</h5>
+        <div class="foot-row">📲 <span><b>WhatsApp</b>(81) 98578-4835</span></div>
+        <div class="foot-row">📷 <span><b>Instagram</b>@seuacai_01</span></div>
+        <a class="btn btn-gold" href="#montar" style="margin-top:6px;">Fazer meu pedido</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Seu Açaí — Camaragibe/PE</span>
+      <a href="#top">Voltar ao topo ↑</a>
+    </div>
+  </div>
+</footer>
+
+<a class="whats-float" id="floatWhats" href="#" target="_blank" rel="noopener" aria-label="Pedir no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z" stroke="#04240f" stroke-width="1.6"/><path d="M8.3 8.6c.2-.6.6-.6 1-.6h.6c.2 0 .5 0 .7.5.2.6.7 1.9.8 2 .1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.2.7.3.5 1 1.3 2.1 2 .6.4 1 .3 1.3 0 .3-.3.6-.7.9-1 .2-.2.4-.2.7-.1.3.1 1.8.9 2.1 1 .3.1.5.2.6.3.1.2.1 1-.4 1.9-.4.9-2.1 1.6-2.9 1.6-.8 0-1.7-.1-3.6-1.1-2.9-1.5-4.7-4.4-4.9-4.6-.1-.2-1.2-1.6-1.2-3.1 0-1.5.8-2.2 1.1-2.5Z" fill="#04240f"/></svg>
+</a>
+
+<script>
+(function(){
+  "use strict";
+
+  var PHONE = "5581985784835"; // WhatsApp: (81) 98578-4835
+  var IG_URL = "https://www.instagram.com/seuacai_01/";
+
+  function waLink(text){
+    return "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(text);
+  }
+  function fmt(n){
+    return "R$ " + n.toFixed(2).replace(".", ",");
+  }
+
+  var defaultGreeting = "Olá! Vim pelo site e quero fazer um pedido no Seu Açaí 💜";
+  document.getElementById("hdrWhats").href = waLink(defaultGreeting);
+  document.getElementById("footWhats").href = waLink(defaultGreeting);
+  document.getElementById("floatWhats").href = waLink(defaultGreeting);
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // quick order buttons on destaque cards
+  document.querySelectorAll(".prod-order").forEach(function(btn){
+    var item = btn.getAttribute("data-item");
+    var price = parseFloat(btn.getAttribute("data-price")) || 0;
+    var msg = "Olá! Quero pedir:\n\n🥤 " + item + (price > 0 ? "\n💰 " + fmt(price) : "") +
+      "\n\n📍 Retirada: Santa Terezinha - Alberto Maia, Camaragibe";
+    btn.href = waLink(msg);
+  });
+
+  // mobile menu
+  var burger = document.getElementById("burgerBtn");
+  var mobileMenu = document.getElementById("mobileMenu");
+  var closeMenu = document.getElementById("closeMenu");
+  burger.addEventListener("click", function(){ mobileMenu.classList.add("open"); });
+  closeMenu.addEventListener("click", function(){ mobileMenu.classList.remove("open"); });
+  mobileMenu.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", function(){ mobileMenu.classList.remove("open"); });
+  });
+
+  /* ---------------- CAROUSEL (hero) ---------------- */
+  var defaultPhotos = [
+    { src:"images/foto1.jpg", alt:"Açaí montado com frutas frescas" },
+    { src:"images/foto4.jpg", alt:"Copão trufado com camadas marmorizadas" },
+    { src:"images/foto5.jpg", alt:"Bandeja de açaí completa com coberturas" },
+    { src:"images/foto3.jpg", alt:"Açaí especial da casa" }
+  ];
+
+  var heroTrack = document.getElementById("heroTrack");
+  var heroDots = document.getElementById("heroDots");
+  var current = 0, slides = [], timer = null;
+
+  function buildCarousel(photos){
+    heroTrack.innerHTML = "";
+    heroDots.innerHTML = "";
+    slides = [];
+    photos.forEach(function(p, i){
+      var div = document.createElement("div");
+      div.className = "carousel-slide" + (i === 0 ? " active" : "");
+      var img = document.createElement("img");
+      img.src = p.src; img.alt = p.alt || "Foto do Seu Açaí"; img.loading = "lazy";
+      div.appendChild(img);
+      heroTrack.appendChild(div);
+      slides.push(div);
+
+      var dot = document.createElement("button");
+      if(i === 0) dot.className = "active";
+      dot.setAttribute("aria-label", "Ir para foto " + (i+1));
+      dot.addEventListener("click", function(){ goTo(i); resetTimer(); });
+      heroDots.appendChild(dot);
+    });
+    current = 0;
+  }
+
+  function goTo(i){
+    if(!slides.length) return;
+    slides[current].classList.remove("active");
+    heroDots.children[current].classList.remove("active");
+    current = (i + slides.length) % slides.length;
+    slides[current].classList.add("active");
+    heroDots.children[current].classList.add("active");
+  }
+  function next(){ goTo(current + 1); }
+  function prev(){ goTo(current - 1); }
+  function resetTimer(){
+    if(timer) clearInterval(timer);
+    timer = setInterval(next, 4200);
+  }
+
+  document.getElementById("heroNext").addEventListener("click", function(){ next(); resetTimer(); });
+  document.getElementById("heroPrev").addEventListener("click", function(){ prev(); resetTimer(); });
+
+  buildCarousel(defaultPhotos);
+  resetTimer();
+
+  /* ---------------- GALLERY (default + storage) ---------------- */
+  var galleryTrack = document.getElementById("galleryTrack");
+  var galleryDefaults = [
+    "images/foto1.jpg","images/787768851_1066060802833539_2677554711284602414_n_.jpg","images/foto3.jpg",
+    "images/foto4.jpg","images/785213475_5398278683729537_9000949985342763312_n_.jpg","images/foto6.jpg"
+  ];
+
+  function addGalleryFigure(src, alt){
+    var fig = document.createElement("figure");
+    var img = document.createElement("img");
+    img.src = src; img.alt = alt || "Foto do Seu Açaí"; img.loading = "lazy";
+    fig.appendChild(img);
+    galleryTrack.appendChild(fig);
+  }
+
+  galleryDefaults.forEach(function(src){ addGalleryFigure(src, "Foto do cardápio Seu Açaí"); });
+
+  var extraPhotosForHero = [];
+
+  async function loadStorageGallery(){
+    if(!window.storage){ return; }
+    try{
+      var listRes = await window.storage.get("carousel:list", true);
+      if(!listRes || !listRes.value) return;
+      var list = JSON.parse(listRes.value);
+      if(!Array.isArray(list) || !list.length) return;
+
+      for (var i = 0; i < list.length; i++){
+        var item = list[i];
+        try{
+          var imgRes = await window.storage.get("carousel:img:" + item.id, true);
+          if(imgRes && imgRes.value){
+            addGalleryFigure(imgRes.value, item.caption || "Foto do Seu Açaí");
+            extraPhotosForHero.push({ src: imgRes.value, alt: item.caption || "Foto do Seu Açaí" });
+          }
+        }catch(e){ /* image missing, skip */ }
+      }
+
+      if(extraPhotosForHero.length){
+        buildCarousel(extraPhotosForHero.concat(defaultPhotos));
+        resetTimer();
+      }
+    }catch(e){
+      console.error("Não foi possível carregar fotos adicionais:", e);
+    }
+  }
+  loadStorageGallery();
+
+  /* ---------------- BUILDER ---------------- */
+  var state = {
+    mode: "tradicional", size: null, price: 0, fruitLimit: 0, compLimit: 0, isTrufado: false,
+    fruits: [], comps: [], cremes: []
+  };
+
+  var modeTabs = document.getElementById("modeTabs");
+  var sizeGrid = document.getElementById("sizeGrid");
+  var sizeGridTrufado = document.getElementById("sizeGridTrufado");
+  var frutasGrid = document.getElementById("frutasGrid");
+  var compGrid = document.getElementById("compGrid");
+  var cremeGrid = document.getElementById("cremeGrid");
+  var stepFrutas = document.getElementById("stepFrutas");
+  var stepComp = document.getElementById("stepComp");
+  var stepCreme = document.getElementById("stepCreme");
+
+  function resetSelections(){
+    state.size = null; state.price = 0; state.fruitLimit = 0; state.compLimit = 0; state.isTrufado = false;
+    state.fruits = []; state.comps = []; state.cremes = [];
+    document.querySelectorAll(".size-opt").forEach(function(o){ o.classList.remove("selected"); });
+    frutasGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
+    compGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
+    cremeGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
+    stepCreme.classList.remove("show");
+    document.getElementById("frutasNote").innerHTML = "Fruta extra: <b>+R$ 1,00</b> cada.";
+    document.getElementById("compNote").innerHTML = "Complemento extra: <b>+R$ 1,00</b> cada.";
+  }
+
+  modeTabs.querySelectorAll(".mode-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
+      modeTabs.querySelectorAll(".mode-tab").forEach(function(t){ t.classList.remove("selected"); });
+      tab.classList.add("selected");
+      state.mode = tab.getAttribute("data-mode");
+      sizeGrid.style.display = state.mode === "tradicional" ? "grid" : "none";
+      sizeGridTrufado.style.display = state.mode === "trufado" ? "grid" : "none";
+      resetSelections();
+      renderSummary();
+    });
+  });
+
+  function bindSizeGrid(grid){
+    grid.querySelectorAll(".size-opt").forEach(function(opt){
+      opt.addEventListener("click", function(){
+        document.querySelectorAll(".size-opt").forEach(function(o){ o.classList.remove("selected"); });
+        opt.classList.add("selected");
+        state.size = opt.getAttribute("data-size");
+        state.price = parseFloat(opt.getAttribute("data-price"));
+        state.fruitLimit = parseInt(opt.getAttribute("data-fruit"), 10);
+        state.compLimit = parseInt(opt.getAttribute("data-comp"), 10);
+        state.isTrufado = opt.getAttribute("data-trufado") === "1";
+
+        state.fruits = []; state.comps = []; state.cremes = [];
+        frutasGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
+        compGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
+        cremeGrid.querySelectorAll(".pick-chip").forEach(function(c){ c.classList.remove("selected","extra"); });
+
+        stepFrutas.style.display = "block";
+        stepComp.style.display = "block";
+        stepCreme.classList.toggle("show", state.isTrufado);
+
+        document.getElementById("frutasNote").innerHTML = state.isTrufado
+          ? "Esse tamanho já inclui " + state.fruitLimit + (state.fruitLimit === 1 ? " fruta" : " frutas") + ". Extra: <b>+R$ 1,00</b> cada."
+          : "Fruta extra: <b>+R$ 1,00</b> cada.";
+        document.getElementById("compNote").innerHTML = state.isTrufado
+          ? "Esse tamanho já inclui " + state.compLimit + " complementos. Extra: <b>+R$ 1,00</b> cada."
+          : "Complemento extra: <b>+R$ 1,00</b> cada.";
+
+        renderSummary();
+      });
+    });
+  }
+  bindSizeGrid(sizeGrid);
+  bindSizeGrid(sizeGridTrufado);
+
+  function toggleChip(btn, list, limit, extraPriceEach){
+    var name = btn.getAttribute("data-name");
+    var idx = list.indexOf(name);
+    if(idx > -1){
+      list.splice(idx, 1);
+      btn.classList.remove("selected","extra");
+    } else {
+      list.push(name);
+      btn.classList.add("selected");
+    }
+    // recompute "extra" styling by order beyond limit
+    list.forEach(function(n, i){
+      var b = Array.prototype.find.call(btn.parentElement.children, function(c){ return c.getAttribute("data-name") === n; });
+      if(b){ b.classList.toggle("extra", limit >= 0 && i >= limit); }
+    });
+  }
+
+  frutasGrid.querySelectorAll(".pick-chip").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      toggleChip(btn, state.fruits, state.fruitLimit, 1);
+      renderSummary();
+    });
+  });
+  compGrid.querySelectorAll(".pick-chip").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      toggleChip(btn, state.comps, state.compLimit, 1);
+      renderSummary();
+    });
+  });
+  cremeGrid.querySelectorAll(".pick-chip").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      toggleChip(btn, state.cremes, 1, 3);
+      renderSummary();
+    });
+  });
+
+  var summarySize = document.getElementById("summarySize");
+  var summaryList = document.getElementById("summaryList");
+  var summaryTotal = document.getElementById("summaryTotal");
+  var sendWhats = document.getElementById("sendWhats");
+  var frutasCounter = document.getElementById("frutasCounter");
+  var compCounter = document.getElementById("compCounter");
+  var cremeCounter = document.getElementById("cremeCounter");
+  var cupFill = document.getElementById("cupFill");
+
+  function renderSummary(){
+    if(!state.size){
+      summarySize.textContent = "Escolha um tamanho";
+      summaryList.innerHTML = '<li class="summary-empty">Seus itens aparecem aqui ✨</li>';
+      summaryTotal.textContent = fmt(0);
+      sendWhats.classList.remove("btn-whats");
+      sendWhats.style.pointerEvents = "none";
+      sendWhats.style.opacity = ".5";
+      cupFill.setAttribute("height", "0");
+      cupFill.setAttribute("y", "140");
+      frutasCounter.textContent = ""; compCounter.textContent = ""; cremeCounter.textContent = "";
+      return;
+    }
+
+    sendWhats.style.pointerEvents = "auto";
+    sendWhats.style.opacity = "1";
+
+    var label = (state.isTrufado ? "Açaí Trufado " : "Açaí Tradicional ") + state.size + "ml";
+    summarySize.textContent = label;
+
+    var total = state.price;
+    var items = [];
+
+    frutasCounter.innerHTML = "Selecionadas: <b>" + state.fruits.length + "/" + state.fruitLimit + "</b> incluídas";
+    compCounter.innerHTML = "Selecionados: <b>" + state.comps.length + "/" + state.compLimit + "</b> incluídos";
+
+    var extraFruits = Math.max(0, state.fruits.length - state.fruitLimit);
+    var extraComps = Math.max(0, state.comps.length - state.compLimit);
+    total += extraFruits * 1 + extraComps * 1;
+
+    if(state.fruits.length) items.push({ label: "Frutas", value: state.fruits.join(", ") });
+    if(extraFruits > 0) items.push({ label: "Fruta extra (" + extraFruits + "x)", value: fmt(extraFruits) });
+    if(state.comps.length) items.push({ label: "Complementos", value: state.comps.join(", ") });
+    if(extraComps > 0) items.push({ label: "Complemento extra (" + extraComps + "x)", value: fmt(extraComps) });
+
+    if(state.isTrufado){
+      cremeCounter.innerHTML = "Creme incluso: <b>" + Math.min(state.cremes.length,1) + "/1</b>";
+      var extraCremes = Math.max(0, state.cremes.length - 1);
+      total += extraCremes * 3;
+      if(state.cremes.length){
+        items.push({ label: "Creme" + (state.cremes.length > 1 ? "s" : ""), value: state.cremes.join(", ") });
+      }
+      if(extraCremes > 0){
+        items.push({ label: "Creme extra (" + extraCremes + "x)", value: fmt(extraCremes * 3) });
+      }
+    }
+
+    summaryList.innerHTML = items.length
+      ? items.map(function(it){ return "<li><span>" + it.label + "</span><b>" + it.value + "</b></li>"; }).join("")
+      : '<li class="summary-empty">Escolha frutas e complementos</li>';
+
+    summaryTotal.textContent = fmt(total);
+
+    // fill the cup visual proportionally to how "full" the choice is
+    var baseFill = state.isTrufado ? 0.55 : 0.35;
+    var fullness = Math.min(1, baseFill + ((state.fruits.length + state.comps.length) / Math.max(1, state.fruitLimit + state.compLimit)) * 0.45 + (state.isTrufado ? state.cremes.length * 0.1 : 0));
+    var maxH = 120, h = maxH * fullness;
+    cupFill.setAttribute("height", h);
+    cupFill.setAttribute("y", 140 - h);
+
+    // build whatsapp message
+    var msg = "Olá! Quero montar meu açaí 💜\n\n🥤 Tamanho: " + label;
+    msg += "\n🍓 Frutas: " + (state.fruits.join(", ") || "a combinar");
+    msg += "\n🍬 Complementos: " + (state.comps.join(", ") || "a combinar");
+    if(state.isTrufado){
+      msg += "\n🍫 Creme: " + (state.cremes.join(", ") || "a combinar");
+    }
+    msg += "\n💰 Total estimado: " + fmt(total);
+    msg += "\n\n📍 Retirada: Santa Terezinha - Alberto Maia, Camaragibe (ou peço pelo 99)";
+
+    sendWhats.href = waLink(msg);
+  }
+
+  renderSummary();
+
+})();
+</script>
+</body>
+</html>
